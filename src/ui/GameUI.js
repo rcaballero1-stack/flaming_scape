@@ -3,15 +3,21 @@ export default class GameUI {
         this.scene = scene;
         this.tempsSupervivencia = 0;
         this.textTemps = scene.add.text(16, 16, 'Temps: 0', { fontSize: '32px', fill: '#fff' });
-        
-        // 🔴 REPTE: Afegiu un temporitzador per cridar a 'incrementarTemps' cada segon
+
+        this.timer = scene.time.addEvent({
+            delay: 1000,
+            callback: this.incrementarTemps,
+            callbackScope: this,
+            loop: true
+        });
     }
 
     incrementarTemps() {
-        // 🔴 REPTE: Incrementeu el contador i actualitzeu el text (setText)
+        this.tempsSupervivencia++;
+        this.textTemps.setText('Temps: ' + this.tempsSupervivencia);
     }
 
     stop() {
-        // Aturem el temps quan acaba la partida
+        if (this.timer) this.timer.remove();
     }
 }

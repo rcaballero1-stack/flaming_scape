@@ -1,13 +1,13 @@
 export default class FireManager {
     constructor(scene) {
         this.scene = scene;
-        // Ja us donem el grup de boles de foc creat:
         this.focs = scene.physics.add.group();
     }
 
     dispararFoc() {
-        // 🔴 REPTE: Creeu una bola de foc en una posició 'x' aleatòria (Phaser.Math.Between)
-        // El foc ha de caure cap avall (setVelocityY)
+        const xAleatoria = Phaser.Math.Between(0, 800);
+        const foc = this.focs.create(xAleatoria, 100, 'foc');
+        foc.setVelocityY(200);
     }
 
     getGroup() {
